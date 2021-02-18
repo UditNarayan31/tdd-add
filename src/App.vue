@@ -1,17 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+   <new-message-form @send="addMessage" />
+   <message-list :messages="messages"/>
+   <LoginPage/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MessageList from './components/MessageList.vue'
+import NewMessageForm from './components/NewMessageForm.vue'
+import LoginPage from './components/LoginPage'
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+   MessageList,
+    NewMessageForm,
+    LoginPage
+  },
+  data: () => ({
+    messages:[]
+  }),
+
+  methods:{
+    addMessage(text){
+       this.messages.unshift(text)
+    }
   }
 }
 </script>
